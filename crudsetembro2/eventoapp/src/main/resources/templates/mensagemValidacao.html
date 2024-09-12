@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt"
+  xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+   
+</head>
+<body>
+    <div th:if="${not #strings.isEmpty(mensagem)}" class="alert alert-warning" role="alert">
+    <span th:text="${mensagem}" style="color: crimson;"></span>
+</div>
+
+</body>
+</html>

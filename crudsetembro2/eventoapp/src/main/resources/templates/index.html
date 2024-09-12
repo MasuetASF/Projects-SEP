@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EventosApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Compiled and minified CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style/styleCss.css">
+  
+  </head>
+  <body class="container">
+    
+    <header>
+      
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Lista de Eventos</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"
+                ><i class="material-icons left">add_circle</i>Cadastrar Evento
+              </a></li>
+            </ul>
+          </div>
+        </nav>
+      
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="/cadastrarEvento">Cadastrar Evento</a></li>
+        </ul>
+    </header>
+
+
+    <div class="container">
+      <!-- Page Content goes here -->
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Deletar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="evento : ${evento}">
+            <td>
+              <a th:href="${(#mvc.url('EC#detalhesEventoGet').arg(0, evento.codigo)).build()}">
+              <span th:text="${evento.nome}"></span>
+            </a></td>
+            <td><span th:text="${evento.local}"></span></td>
+            <td><span th:text="${evento.data}"></span></td>
+            <td><span th:text="${evento.horario}"></span></td>
+            <td>
+              <a th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}" class="waves-effect waves-light btn-small">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Inicializa a Sidenav -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+  </script>
+
+  </body>
+</html>

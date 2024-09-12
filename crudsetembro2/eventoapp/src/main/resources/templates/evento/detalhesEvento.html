@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EventosApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link rel="stylesheet" href="../style/styleCss.css">
+
+    <style>
+      p {
+        padding: 0px;
+        margin: 0px;
+        text-align: center;
+      }
+      
+    </style>
+  </head>
+  <body class="container">
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Evento</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+              <a href="/cadastrarEvento" class="waves-effect waves-light btn"
+                ><i class="material-icons left">add_circle</i>Cadastrar Evento
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="/cadastrarEvento">Cadastrar Evento</a></li>
+      </ul>
+    </header>
+
+    <h6>
+      <a href="/eventos" class="waves-effect waves-light btn"
+        ><i class="material-icons left">arrow_back</i>Voltar a lista de
+        Eventos</a
+      >
+    </h6>
+
+    <br /><br />
+
+    <div class="container" th:each="evento : ${evento}">
+      <!-- Page Content goes here -->
+      <h5>Detalhes do evento</h5> 
+      <div class="row z-depth-3">
+        <p class="flow-text">Nome: <span th:text="${evento.nome}"></span></p>
+        <p class="flow-text">Local: <span th:text="${evento.local}"></span></p>
+        <p class="flow-text">Data: <span th:text="${evento.data}"></span></p>
+        <p class="flow-text">
+          Horário: <span th:text="${evento.horario}"></span>
+        </p>
+      </div>
+    </div>
+      <br />
+    <div class="form">  
+      <p><span>Formulário de convidado</span> </p>
+
+      <th:block th:insert="~{mensagemValidacao}"></th:block>
+
+      <div class="container" >
+        <form method="post">
+          <div class="input-field">
+            Nome: <input type="text" value="" name="nomeConvidado" required placeholder="Nome Completo"/>
+          </div>
+          <div class="input-field">
+            RG: <input type="text" value="" name="rg" required  placeholder="AA-00.000.000"/>
+          </div>
+          <div class="centralizar">
+            <button type="submit" class="waves-effect waves-light btn-large">
+              Adicionar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="container">
+      <h5 >Lista de Convidados</h5>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>RG</th>
+            <th>Deletar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="convidado : ${convidados}">
+            <td>
+              <span th:text="${convidado.nomeConvidado}"></span>
+            </td>
+            <td>
+              <span th:text="${convidado.rg}"></span>
+            </td>
+            <td>
+              <a th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.rg)).build()}" class="waves-effect waves-light btn-small">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems);
+      });
+    </script>
+  </body>
+</html>

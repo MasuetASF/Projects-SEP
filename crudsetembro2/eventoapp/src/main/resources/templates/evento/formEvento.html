@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formulário de evento</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+      <link rel="stylesheet" href="../style/styleCss.css">
+
+
+</head>
+<body class="container">
+
+    <header>
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Cadastro de Evento</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+              ><i class="material-icons">menu</i></a
+            >
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>
+                <a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">view_list</i>Lista de Eventos</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+  
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="/eventos">Lista de Eventos</a></li>
+        </ul>
+      </header>
+
+    <h6></h6>
+    
+    <br>
+    <br>
+    <br>
+    
+    <th:block th:insert="~{mensagemValidacao}"></th:block>
+
+    <div class="container form">
+    <form  method="post">
+            Nome: <input type="text" value="" name="nome" required/>
+            <div class="row">
+                <div class="input-field col s6">
+                    Local: <input type="text" value="" name="local" required/>
+                </div>
+                <div class="input-field col s3">
+                    Data: <input type="date" value="" name="data" required/>
+                </div>
+                <div class="input-field col s3">
+                  Horário: <input type="time" name="horario" value="12:00" required/>
+                </div>
+            </div>
+            <div class="centralizar">
+              <button type="submit" class="waves-effect waves-light btn-large">Salvar</button>
+            </div>
+            
+        </form>
+    </div>
+    
+    
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+      </script>
+</body>
+</html>
